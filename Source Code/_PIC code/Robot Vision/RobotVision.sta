@@ -1,0 +1,77 @@
+
+ROM used: 10528 (32%)
+          10528 (32%) including unused fragments
+
+          2 Average locations per line
+          13 Average locations per statement
+
+RAM used: 210 (10%) at main() level
+          351 (17%) worst case
+
+Stack used: 8 worst case (out of 28 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  390   210  25  RobotVision.c
+  429     0   0  C:\PROGRA~1\PICC\devices\18F4550.h
+   28     0   0  C:\PROGRA~1\PICC\drivers\STDDEF.H
+ 1360   380  46  C:\PROGRA~1\PICC\drivers\stdlib.h
+   28     0   0  C:\PROGRA~1\PICC\drivers\stddef.h
+  417     0   0  C:\PROGRA~1\PICC\drivers\string.h
+   28     0   0  C:\PROGRA~1\PICC\drivers\ctype.h
+ 2055   238  29  C:\PROGRA~1\PICC\drivers\math.h
+----- -----
+ 4735   828 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    128   1  10   318  6.5  strncpy
+0     62   0   5   129  4.6  strlen
+0    618   3  21  1191  9.7  atof
+0    246   1  11             @MULFF
+0     54   0   2             @ITOF
+0    632   3  16             @ADDFF
+0    350   2  14             @DIVFF
+0    122   1  10             @FLT
+0     60   0   4             @SFTOI
+0   1042   5  44  1126 10.4  cos
+0     92   0   8    44  1.9  sin
+0    242   1  24   630  7.5  RDA_isr
+0     36   0   0             @const514
+0     66   0   1   125  3.8  EXT1_isr
+0    110   1   1   221  4.0  EXT2_isr
+0     16   0   0    33  1.3  TIMER1_isr
+0    540   3   0   871  3.8  MAIN
+0     62   0   5             @FTOSD
+0    122   1  13             @DIV3232
+0    408   2  13             @PRINTF_L32D_19200_31766_31767FPFPF
+0    594   3  12   194  3.2  xy_calculator
+0   1214   6   4  1156  8.5  pid_Robot
+0     86   0   5             @SDTOF
+0     78   0   0   154  1.7  init_pid_Right
+0     78   0   0   154  1.7  init_pid_Left
+0    596   3  10  1040  8.0  pid_Right
+0    598   3  10  1040  8.0  pid_Left
+0   2086  10  13  1628  8.2  moveRobot
+
+Program metrics:
+    Functions               17
+    Statements              828
+    Comments                756
+    Volume (V)              16110
+    Difficilty (D)          94.5
+    Effort to implement (E) 1523231
+    Time to implement (T)   23 hours, 30 minutes
+    Est Delivered Bugs (B)  4
+    Cyclomatic Complexity   45
+    Maintainability (MI)    32
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000C0   186  0  
+000C2-07FFE  10338  22236  
+
+
+

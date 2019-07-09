@@ -1,0 +1,51 @@
+
+ROM used: 510 (2%)
+          510 (2%) including unused fragments
+
+          1 Average locations per line
+          11 Average locations per statement
+
+RAM used: 27 (1%) at main() level
+          27 (1%) worst case
+
+Stack used: 2 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  140    47 100  Robot Basic.c
+  429     0   0  C:\PROGRA~1\PICC\devices\18f4550.h
+----- -----
+  569    47 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     14   1   0    20  1.3  RDA_isr
+0    178  17   2   676  3.8  MAIN
+0     28   3   0   318  6.5  @const67
+0     32   3   0    69  1.6  robot_forward
+0     32   3   0    69  1.6  robot_left
+0     32   3   0    69  1.6  robot_right
+0     32   3   0    69  1.6  robot_backward
+0      8   1   0    32  1.0  robot_stop
+
+Program metrics:
+    Functions               8
+    Statements              47
+    Comments                126
+    Volume (V)              1956
+    Difficilty (D)          19.6
+    Effort to implement (E) 38252
+    Time to implement (T)   35 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   7
+    Maintainability (MI)    107
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-0009C   150  0  
+0009E-07FFE   356  32254  
+
+
+

@@ -1,0 +1,368 @@
+CCS PCH C Compiler, Version 4.057, 4831               24-Nov-11 09:46
+
+               Filename: Robot Basic.lst
+
+               ROM used: 510 bytes (2%)
+                         Largest free fragment is 32254
+               RAM used: 27 (1%) at main() level
+                         27 (1%) worst case
+               Stack:    2 worst case (1 in main + 1 for interrupts)
+
+*
+0000:  GOTO   0150
+*
+0008:  MOVWF  05
+000A:  MOVFF  FD8,06
+000E:  MOVFF  FE0,07
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0D
+0018:  MOVFF  FEA,08
+001C:  MOVFF  FE1,09
+0020:  MOVFF  FE2,0A
+0024:  MOVFF  FD9,0B
+0028:  MOVFF  FDA,0C
+002C:  MOVFF  FF3,14
+0030:  MOVFF  FF4,15
+0034:  MOVFF  FFA,16
+0038:  MOVFF  00,0F
+003C:  MOVFF  01,10
+0040:  MOVFF  02,11
+0044:  MOVFF  03,12
+0048:  MOVFF  04,13
+004C:  BTFSS  F9D.5
+004E:  GOTO   0058
+0052:  BTFSC  F9E.5
+0054:  GOTO   00BA
+0058:  MOVFF  0F,00
+005C:  MOVFF  10,01
+0060:  MOVFF  11,02
+0064:  MOVFF  12,03
+0068:  MOVFF  13,04
+006C:  BSF    0E.7
+006E:  MOVFF  0D,FE9
+0072:  MOVFF  08,FEA
+0076:  MOVFF  09,FE1
+007A:  MOVFF  0A,FE2
+007E:  MOVFF  0B,FD9
+0082:  MOVFF  0C,FDA
+0086:  MOVFF  14,FF3
+008A:  MOVFF  15,FF4
+008E:  MOVFF  16,FFA
+0092:  MOVF   05,W
+0094:  MOVFF  07,FE0
+0098:  MOVFF  06,FD8
+009C:  RETFIE 0
+.................... #include <18f4550.h> 
+.................... //////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... #device PIC18F4550 
+.................... #list 
+....................  
+....................  
+.................... #FUSES HS //High speed Osc (> 4mhz) 
+.................... #FUSES PUT //Power Up Timer 
+.................... #FUSES NOPROTECT //Code not protected from reading 
+.................... #FUSES NOBROWNOUT //No brownout reset 
+.................... #FUSES NOLVP //Low Voltage Programming on B3(PIC16) or B5(PIC18) 
+.................... #FUSES NOCPD //No EE protection 
+.................... #FUSES NODEBUG //No Debug mode for ICD 
+.................... #FUSES NOWDT 
+....................  
+.................... #use delay(clock=12000000) 
+.................... #use rs232 (baud=19200 , parity=n , xmit=pin_C6 , rcv=pin_C7 ,bits=8) 
+....................  
+.................... #byte PORTA =  0xf80 
+.................... #byte PORTB =  0xf81 
+.................... #byte PORTC =  0xf82 
+.................... #byte PORTD =  0xf83 
+.................... #byte PORTE =  0xf84  
+....................  
+.................... #use fast_io(b) 
+.................... #use fast_io(c) 
+.................... #use fast_io(a) 
+.................... #use fast_io(d) 
+.................... #use fast_io(e) 
+....................  
+.................... char ss; 
+....................  
+.................... /**************************************/ 
+.................... #INT_RDA                                                          
+.................... void RDA_isr() 
+.................... { 
+.................... ss = getc(); 
+00BA:  BTFSS  F9E.5
+00BC:  BRA    00BA
+00BE:  MOVFF  FAE,18
+.................... //clear_interrupt(INT_RDA); 
+.................... } 
+00C2:  BCF    F9E.5
+00C4:  GOTO   0058
+.................... #BIT DIR_RIGHT = PORTE.1   //0: , 1: 
+.................... #BIT DIR_LEFT  = PORTE.2 
+....................  
+.................... void robot_forward(); 
+.................... void robot_left(); 
+.................... void robot_right(); 
+.................... void robot_backward(); 
+.................... void robot_stop(); 
+.................... /**************************************/ 
+.................... void main(){ 
+*
+0150:  CLRF   FF8
+0152:  BCF    FD0.7
+0154:  BSF    0D.7
+0156:  CLRF   FEA
+0158:  CLRF   FE9
+015A:  BCF    FB8.3
+015C:  MOVLW  26
+015E:  MOVWF  FAF
+0160:  MOVLW  A6
+0162:  MOVWF  FAC
+0164:  MOVLW  90
+0166:  MOVWF  FAB
+0168:  MOVF   FC1,W
+016A:  ANDLW  C0
+016C:  IORLW  0F
+016E:  MOVWF  FC1
+0170:  MOVLW  07
+0172:  MOVWF  FB4
+....................  
+....................        set_tris_D(0xFF); 
+0174:  MOVLW  FF
+0176:  MOVWF  F95
+....................        set_tris_A(0); 
+0178:  MOVLW  00
+017A:  MOVWF  F92
+....................        set_tris_B(0xFF); 
+017C:  MOVLW  FF
+017E:  MOVWF  F93
+....................        set_tris_C(0b10000000); 
+0180:  MOVLW  80
+0182:  MOVWF  F94
+....................        set_tris_E(0);        
+0184:  BCF    F96.0
+0186:  BCF    F96.1
+0188:  BCF    F96.2
+....................  
+.................... setup_adc_ports(NO_ANALOGS); 
+018A:  MOVF   FC1,W
+018C:  ANDLW  C0
+018E:  IORLW  0F
+0190:  MOVWF  FC1
+.................... enable_interrupts (INT_RDA);    
+0192:  BSF    F9D.5
+.................... enable_interrupts(GLOBAL); 
+0194:  MOVLW  C0
+0196:  IORWF  FF2,F
+....................  
+....................  
+.................... //Setup for motor control 
+....................  
+.................... /*-------------------------------------------------------------------- 
+....................  setup_timer_2 (mode, period, postscale) 
+....................  period:  a int 0-255 that determines when the clock value is reset ( period = PR2) 
+....................   f_pwm = 1/([period + 1] • 4 • TOSC •(Prescale Value)) 
+....................   f_pwm = 1/([149 + 1]• 4 • (12e6)^-1 • 4) = 5khz 
+.................... --------------------------------------------------------------------- */ 
+.................... setup_timer_2(T2_DIV_BY_4,255,1);  //setup_timer_2(T2_DIV_BY_4,149,1);  //f = 7.5 Khz, 30 Khz, 2.929 Kz, 732.42 hz 
+0198:  MOVLW  00
+019A:  IORLW  05
+019C:  MOVWF  FCA
+019E:  MOVLW  FF
+01A0:  MOVWF  FCB
+.................... output_low(PIN_C1); // Set CCP2 output low  
+01A2:  BCF    F8B.1
+.................... output_low(PIN_C2); // Set CCP1 output low  
+01A4:  BCF    F8B.2
+....................  
+.................... setup_ccp1(CCP_PWM);    //khoi tao bo PWM1 
+01A6:  BCF    F8B.2
+01A8:  MOVLW  0C
+01AA:  MOVWF  FBD
+01AC:  CLRF   FB7
+.................... setup_ccp2(CCP_PWM);    //khoi tao bo PWM2 
+01AE:  BCF    F8B.1
+01B0:  MOVWF  FBA
+.................... set_pwm1_duty(0); 
+01B2:  CLRF   FBE
+.................... set_pwm2_duty(0); 
+01B4:  CLRF   FBB
+.................... ss = ""; 
+01B6:  CLRF   FEA
+01B8:  MOVLW  18
+01BA:  MOVWF  FE9
+01BC:  MOVFF  FF2,19
+01C0:  BCF    FF2.7
+01C2:  MOVLW  00
+01C4:  RCALL  009E
+01C6:  TBLRD*-
+01C8:  TBLRD*+
+01CA:  MOVF   FF5,W
+01CC:  MOVWF  FEE
+01CE:  IORLW  00
+01D0:  BNZ   01C8
+01D2:  BTFSC  19.7
+01D4:  BSF    FF2.7
+....................  
+.................... while(true) 
+.................... { 
+....................    if(ss == 'F') robot_forward(); 
+01D6:  MOVF   18,W
+01D8:  SUBLW  46
+01DA:  BNZ   01DE
+01DC:  BRA    00C8
+....................    if(ss == 'B') robot_backward(); 
+01DE:  MOVF   18,W
+01E0:  SUBLW  42
+01E2:  BNZ   01E6
+01E4:  BRA    00E8
+....................    if(ss == 'R') robot_right(); 
+01E6:  MOVF   18,W
+01E8:  SUBLW  52
+01EA:  BNZ   01EE
+01EC:  BRA    0108
+....................    if(ss == 'L') robot_left(); 
+01EE:  MOVF   18,W
+01F0:  SUBLW  4C
+01F2:  BNZ   01F6
+01F4:  BRA    0128
+....................    if(ss == 'S') robot_stop(); 
+01F6:  MOVF   18,W
+01F8:  SUBLW  53
+01FA:  BNZ   01FE
+01FC:  BRA    0148
+.................... } 
+01FE:  BRA    01D6
+....................  
+.................... } 
+....................  
+.................... void robot_forward() 
+.................... {   
+0200:  SLEEP 
+.................... //Left wheel 
+....................    DIR_LEFT = 0;                   
+*
+00C8:  BCF    F84.2
+....................    set_pwm1_duty(30L);  
+00CA:  MOVLW  07
+00CC:  MOVWF  FBE
+00CE:  MOVF   FBD,W
+00D0:  ANDLW  CF
+00D2:  IORLW  20
+00D4:  MOVWF  FBD
+....................  
+.................... //Right whee3 
+....................    DIR_RIGHT = 0; 
+00D6:  BCF    F84.1
+....................    set_pwm2_duty(30L);  
+00D8:  MOVLW  07
+00DA:  MOVWF  FBB
+00DC:  MOVF   FBA,W
+00DE:  ANDLW  CF
+00E0:  IORLW  20
+00E2:  MOVWF  FBA
+....................  
+.................... //   delay_us(1000); 
+.................... } 
+00E4:  GOTO   01DE (RETURN)
+....................  
+.................... void robot_left() 
+.................... { 
+.................... //Left wheel 
+....................    DIR_LEFT = 1;             
+*
+0128:  BSF    F84.2
+....................    set_pwm1_duty(30L);  
+012A:  MOVLW  07
+012C:  MOVWF  FBE
+012E:  MOVF   FBD,W
+0130:  ANDLW  CF
+0132:  IORLW  20
+0134:  MOVWF  FBD
+....................  
+.................... //Right wheel 
+....................    DIR_RIGHT = 0;                
+0136:  BCF    F84.1
+....................    set_pwm2_duty(30L);  
+0138:  MOVLW  07
+013A:  MOVWF  FBB
+013C:  MOVF   FBA,W
+013E:  ANDLW  CF
+0140:  IORLW  20
+0142:  MOVWF  FBA
+....................  
+.................... } 
+0144:  GOTO   01F6 (RETURN)
+....................  
+.................... void robot_right() 
+.................... { 
+.................... //Left wheel 
+....................    DIR_LEFT = 0;                     
+*
+0108:  BCF    F84.2
+....................    set_pwm1_duty(30L);  
+010A:  MOVLW  07
+010C:  MOVWF  FBE
+010E:  MOVF   FBD,W
+0110:  ANDLW  CF
+0112:  IORLW  20
+0114:  MOVWF  FBD
+....................  
+.................... //Right wheel 
+....................    DIR_RIGHT = 1;                       
+0116:  BSF    F84.1
+....................    set_pwm2_duty(30L);  
+0118:  MOVLW  07
+011A:  MOVWF  FBB
+011C:  MOVF   FBA,W
+011E:  ANDLW  CF
+0120:  IORLW  20
+0122:  MOVWF  FBA
+.................... } 
+0124:  GOTO   01EE (RETURN)
+....................  
+.................... void robot_backward() 
+.................... { 
+.................... //Left wheel 
+....................    DIR_LEFT = 1;                       
+*
+00E8:  BSF    F84.2
+....................    set_pwm1_duty(30L);  
+00EA:  MOVLW  07
+00EC:  MOVWF  FBE
+00EE:  MOVF   FBD,W
+00F0:  ANDLW  CF
+00F2:  IORLW  20
+00F4:  MOVWF  FBD
+....................  
+.................... //Right wheel 
+....................    DIR_RIGHT = 1;                     
+00F6:  BSF    F84.1
+....................    set_pwm2_duty(30L);  
+00F8:  MOVLW  07
+00FA:  MOVWF  FBB
+00FC:  MOVF   FBA,W
+00FE:  ANDLW  CF
+0100:  IORLW  20
+0102:  MOVWF  FBA
+.................... } 
+0104:  GOTO   01E6 (RETURN)
+....................  
+.................... void robot_stop() 
+.................... { 
+....................    set_pwm1_duty(0); 
+*
+0148:  CLRF   FBE
+....................    set_pwm2_duty(0); 
+014A:  CLRF   FBB
+.................... } 
+014C:  GOTO   01FE (RETURN)
+....................  
+
+Configuration Fuses:
+   Word  1: 0C20   NOIESO NOFCMEN HS PLL1 CPUDIV1 USBDIV
+   Word  2: 1E18   NOBROWNOUT NOWDT BORV20 PUT WDT32768 NOVREGEN RESERVED
+   Word  3: 8300   PBADEN CCP2C1 MCLR NOLPT1OSC RESERVED
+   Word  4: 0081   STVREN NODEBUG NOLVP NOXINST NOICPRT RESERVED
+   Word  5: C00F   NOPROTECT NOCPD NOCPB
+   Word  6: E00F   NOWRT NOWRTD NOWRTC NOWRTB
+   Word  7: 400F   NOEBTR NOEBTRB

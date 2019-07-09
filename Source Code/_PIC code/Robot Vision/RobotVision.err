@@ -1,0 +1,6 @@
+>>> Warning 216 "RobotVision.c" Line 391(0,1): Interrupts disabled during call to prevent re-entrancy:  (@MULFF)
+>>> Warning 216 "RobotVision.c" Line 391(0,1): Interrupts disabled during call to prevent re-entrancy:  (@DIVFF)
+>>> Warning 216 "RobotVision.c" Line 391(0,1): Interrupts disabled during call to prevent re-entrancy:  (@ITOF)
+>>> Warning 216 "RobotVision.c" Line 391(0,1): Interrupts disabled during call to prevent re-entrancy:  (@ADDFF)
+      Memory usage:   ROM=32%      RAM=10% - 17%
+      0 Errors,  4 Warnings.

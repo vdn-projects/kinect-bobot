@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A0F460EA-C7B8-4E61-8D27-DC88AAA1400E}</ProjectGuid>
+    <RootNamespace>RobotVision</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:/Program Files/Boost/include;C:/Program Files/Eigen 3.0.0/include/eigen3;C:/Program Files/flann 1.6.9/include;C:/Program Files/CMINPACK 1.1.3/include/cminpack-1;C:/Program Files/OpenNI/Include;C:/PCL/include;C:/Program Files/VTK 5.6/include/vtk-5.6;C:/PCL/trunk/common/include;C:/PCL/trunk/io/include;C:/PCL/trunk/filters/include;C:/PCL/trunk/sample_consensus/include;C:/PCL/trunk/segmentation/include;C:/PCL/trunk/visualization/include;C:/PCL/trunk/kdtree/include;C:/PCL/trunk/features/include;C:/PCL/trunk/surface/include;C:/PCL/trunk/octree/include;C:/PCL/trunk/registration/include;C:/PCL/trunk/keypoints/include;C:/PCL/trunk/apps/include;%(AdditionalIncludeDirectories);C:\Program Files\Code Laboratories\CL NUI Platform\SDK\Include;C:\OpenCV2.1\include\opencv;$(IncludePath)</IncludePath>
+    <LibraryPath>C:/Program Files/Boost/lib;C:/Program Files/Boost/lib/$(Configuration);C:/Program Files/VTK 5.6/lib/vtk-5.6;C:/Program Files/VTK 5.6/lib/vtk-5.6/$(Configuration);C:\Program Files\Code Laboratories\CL NUI Platform\SDK\Lib;C:\OpenCV2.1\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>C:\OpenCV2.1\src\cv;C:\OpenCV2.1\src\cvaux;C:\OpenCV2.1\src\cxcore;C:\OpenCV2.1\src\highgui;C:\OpenCV2.1\src\ml;$(SourcePath)</SourcePath>
+    <OutDir>.\Release</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;C:\Program Files\Boost\lib\libboost_system-vc100-mt-1_46_1.lib;C:\Program Files\Boost\lib\libboost_filesystem-vc100-mt-1_46_1.lib;C:\Program Files\Boost\lib\libboost_thread-vc100-mt-1_46_1.lib;C:\Program Files\Boost\lib\libboost_date_time-vc100-mt-1_46_1.lib;C:\Program Files\Boost\lib\libboost_iostreams-vc100-mt-1_46_1.lib;C:\PCL\lib\pcl_common.lib;C:\PCL\lib\pcl_io.lib;C:\PCL\lib\pcl_filters.lib;C:\PCL\lib\pcl_visualization.lib;C:\PCL\lib\pcl_segmentation.lib;C:\PCL\lib\pcl_sample_consensus.lib;C:\Program Files\OpenNI\Lib\openNI.lib;vtkWidgets.lib;vtkHybrid.lib;vtkRendering.lib;vtkGraphics.lib;vtkverdict.lib;vtkImaging.lib;vtkIO.lib;vtkFiltering.lib;vtkCommon.lib;vtkDICOMParser.lib;vtkNetCDF_cxx.lib;vtkmetaio.lib;comctl32.lib;wsock32.lib;vtksqlite.lib;vtkpng.lib;vtktiff.lib;vtkzlib.lib;vtkjpeg.lib;vtkexpat.lib;vtksys.lib;ws2_32.lib;vtkftgl.lib;vtkfreetype.lib;vtkexoIIc.lib;vtkNetCDF.lib;vfw32.lib;opengl32.lib;C:\PCL\lib\pcl_range_image.lib;C:\Program Files\CMINPACK 1.1.3\lib\cminpack_s.lib;C:\PCL\lib\pcl_kdtree.lib;C:\Program Files\flann 1.6.9\lib\flann_cpp_s.lib;CLNUIDevice.lib;cv210.lib;highgui210.lib;cxcore210.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\RobotVision.ico" />
+    <None Include="res\RobotVision.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nuiMotor.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="RobotVision.h" />
+    <ClInclude Include="RobotVisionDlg.h" />
+    <ClInclude Include="SerialCtl.hpp" />
+    <ClInclude Include="serialThread.hpp" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="nuiMotor.cpp" />
+    <ClCompile Include="RobotVision.cpp" />
+    <ClCompile Include="RobotVisionDlg.cpp" />
+    <ClCompile Include="SerialCtl.cpp" />
+    <ClCompile Include="serialThread.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RobotVision.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="RobotVision.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

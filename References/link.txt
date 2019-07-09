@@ -1,0 +1,15 @@
+http://en.wikipedia.org/wiki/Kinect
+http://kinectforwindows.org
+http://openkinect.org/wiki/Main_Page
+
+openni vs kinect sdk: http://www.brekel.com/?page_id=671
+
+http://www.ros.org/wiki/kinect_calibration/technical
+http://nicolas.burrus.name/index.php/Research/KinectCalibration
+
+Guiness: http://community.guinnessworldrecords.com/_Kinect-Confirmed-As-Fastest-Selling-Consumer-Electronics-Device/blog/3376939/7691.html
+IR pattern: http://www.futurepicture.org/?p=129
+ PrimeSense Light Coding technology: http://www.primesense.com/en/technology
+
+
+http://en.wikipedia.org/wiki/RANSAC

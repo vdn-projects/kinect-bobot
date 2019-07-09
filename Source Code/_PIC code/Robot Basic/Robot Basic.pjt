@@ -1,0 +1,24 @@
+[PROJECT]
+Target=D:\_Project\_PIC code\Robot Basic\Robot Basic.hex
+Development_Mode=
+Processor_Text=PIC18F4550
+ToolSuite=CCS
+Processor=0x4550
+[D:\_Project\_PIC code\Robot Basic\Robot Basic]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=D:\_Project\_PIC code\Robot Basic\Robot Basic.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=D:\_Project\_PIC code\Robot Basic\Robot Basic
+[Opened Files]
+1=..\Robot Basic\Robot Basic.c
+2=

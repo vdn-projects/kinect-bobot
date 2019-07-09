@@ -1,0 +1,52 @@
+[Directories]
+Include=C:\PROGRA~1\PICC\devices\;C:\PROGRA~1\PICC\drivers\;
+Library=
+LinkerScript=
+[defines]
+enabled=0
+D1=
+V1=
+[fileformats]
+forcecoff=0
+debug=4
+error=2
+object=0
+list=0
+scratch=0
+sta=1
+tre=1
+allerrors=1
+allwarnings=1
+stayupne=3
+stayupoe=0
+[PROJECT]
+Target=RobotVision.hex
+Development_Mode=
+Processor=0x4550
+Processor_Text=PIC18F4550
+ToolSuite=CCS
+[Target Data]
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+[RobotVision.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=D:\_Project\PIC code\RobotVision.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=RobotVision.c
+[Opened Files]
+1=D:\_Project\_PIC code\Robot Vision\RobotVision.c
+2=C:\PROGRA~1\PICC\drivers\stddef.h
+3=C:\PROGRA~1\PICC\drivers\math.h
+4=
